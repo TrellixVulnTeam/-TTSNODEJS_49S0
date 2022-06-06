@@ -5,24 +5,27 @@ class loginControllers{
 
     //[GET]/
     Viewlogin(req,res,next){
-        res.render('login');
-        // TaiKhoan.find({})
-        // .then((tk)=>
-        //     res.json(tk)
-        // )
-        // .catch(next);
+        res.render('ManagerAction/login');
     }
 
+    //[POST]/login
     login(req,res,next){
         TaiKhoan.findOne({userName: req.body.userName,password: req.body.password})
                 .then((tk)=>
                     {
-                        if(tk)
+                        if(!tk)
                         {
-                            res.json(tk)
+                            res.send('<script>alert("Sai tk hoac mk")</script>')
                         }
                         else{
-                            res.json({Ktra: "Dang Nhap Khong Thanh Cong"})
+                            if(tk.permission == 'admin')
+                            {
+                                res.render('home')
+                            }
+                            else
+                            {
+                                res.send('Chào mừng bạn đến web site của chúng tôi!')
+                            }
                         }
                     }
                 )

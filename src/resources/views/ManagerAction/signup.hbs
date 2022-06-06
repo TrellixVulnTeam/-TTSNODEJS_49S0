@@ -1,0 +1,47 @@
+<form method="POST"  action="/todoapp/signup/submitsignup" id="formSignUp">
+  <div class="form-group">
+    <label for="exampleInputEmail1">User Name:</label>
+    <input type="text" name="userName" class="form-control" id="InputUserName" aria-describedby="emailHelp" placeholder="Enter user name">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your user name with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Confirm password</label>
+    <input type="password" name="confirm_password" class="form-control" id="confirmInputPassword" placeholder="Confirm password">
+  </div>
+  <button type="button" class="btn btn-primary" id="buttonSignUp">Sign up</button>
+</form>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded',function() {
+        let formSignUp =  document.forms['formSignUp'];
+        let txtPassword = document.getElementById('inputPassword');
+        let txtConfirmPassword = document.getElementById('confirmInputPassword');
+        let txtUserName = document.getElementById('InputUserName');
+        let buttonSignUp = document.getElementById('buttonSignUp');
+
+        buttonSignUp.addEventListener('click', function(){
+          if(txtUserName.value == "" || txtPassword.value == "" || txtConfirmPassword.value == "")
+          {
+            alert("Vui lòng nhập đầy đủ thông tin!");
+          }
+          else
+          {
+              if(txtConfirmPassword.value == txtPassword.value){
+                    formSignUp.submit();
+              }
+              else
+              {
+                  alert("mật khẩu không khớp");
+                  //console.log(txtConfirmPassword.value)
+                  //console.log(txtPassword.value)
+              }
+          }
+        })
+
+    })
+</script>
