@@ -9,7 +9,8 @@ class loginControllers{
     }
 
     //[POST]/login
-    login(req,res,next){
+    login(req,res,next)
+    {
         TaiKhoan.findOne({userName: req.body.userName,password: req.body.password})
                 .then((tk)=>
                     {
@@ -20,7 +21,12 @@ class loginControllers{
                         else{
                             if(tk.permission == 'admin')
                             {
-                                res.render('home')
+                                TaiKhoan.find({})
+                                .lean()
+                                .then((allTK)=>res.render('home',{allTK}))
+                                .catch(next)
+
+                                
                             }
                             else
                             {

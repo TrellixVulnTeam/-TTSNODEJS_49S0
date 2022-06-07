@@ -1,0 +1,44 @@
+<form method="POST" action="/todoapp/account/{{this._id}}/editaccount" id="formEdit">
+  <div class="form-group">
+    <label for="exampleInputEmail1">User Name:</label>
+    <input type="text" name="userName" value="{{this.userName}}" readonly class="form-control" id="InputUserName" aria-describedby="emailHelp" placeholder="Enter user name">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" name="password"value="{{this.password}}" readonly class="form-control" id="inputPassword" placeholder="Password">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">New Password</label>
+    <input type="password" name="newPassword" class="form-control" id="inputNewPassword" placeholder="Password">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Confirm New password</label>
+    <input type="password" name="newConfirmPassword" class="form-control" id="confirmNewInputPassword" placeholder="Confirm password">
+  </div>
+  <button type="button" class="btn btn-primary" id="buttonEdit">Edit Account</button>
+</form>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded',function() {
+        let formEdit =  document.forms['formEdit'];
+        let txtNewPassword = document.getElementById('inputNewPassword');
+        let txtConfirmNewInputPassword = document.getElementById('confirmNewInputPassword');
+        let txtUserName = document.getElementById('InputUserName');
+        let buttonEdit = document.getElementById('buttonEdit');
+
+        buttonEdit.addEventListener('click', function(){
+              
+              if(txtConfirmNewInputPassword.value == txtNewPassword.value){
+                    formEdit.submit();
+              }
+              else
+              {
+                  alert("mật khẩu không khớp");
+                  //console.log(txtConfirmNewInputPassword.value)
+                  //console.log(txtPassword.value)
+              }
+        })
+
+    })
+</script>

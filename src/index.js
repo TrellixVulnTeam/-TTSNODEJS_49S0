@@ -3,6 +3,7 @@ const path = require('path');
 const handlebars = require('express-handlebars');
 const route = require('../src/resources/routes/index');
 const db = require('../src/config/db/index');
+const { helpers } = require('handlebars');
 const app = express();
 const port = 3000;
 
@@ -20,7 +21,10 @@ app.use(express.static(path.join(__dirname,"public")));
 
 //template handlears
 const hbs = handlebars.create({
-  extname: '.hbs'
+  extname: '.hbs',
+  helpers:{
+    sum:(a,b) => a+b
+  }
 });
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');

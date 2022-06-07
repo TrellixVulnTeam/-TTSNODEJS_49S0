@@ -1,1 +1,43 @@
-<h1>hello world!</h1>
+<form class="mt-4" name="container-form" method="POST" action="/todoapp/account/handle-form-actions">
+  <div>
+    <h3>Quản lí tài khoản</h3>
+    </div>
+  </div>
+
+  <table class="table mt-4">
+      <thead>
+          <tr>
+              <th scope="col"></th>
+              <th scope="col">#</th>
+              <th scope="col">
+                User Name
+              </th>
+              <th scope="col">
+                Password
+              </th>
+              <th scope="col">
+                Permission
+              </th>
+              <th scope="col" colspan="2">
+                Thời gian tạo
+              </th>
+          </tr>
+      </thead>
+      <tbody>
+          {{#each allTK}}
+          <tr>
+              <th scope="col"></th>
+              <th scope="row">{{sum @index 1}}</th>
+              <td>{{this.userName}}</td>
+              <td>{{this.password}}</td>
+              <td>{{this.permission}}</td>
+              <td>{{this.createdAt}}</td>
+              <td>
+                  <a href="/todoapp/account/{{this._id}}/edit" class="btn btn-link">Sửa</a>
+                  <a href="/todoapp/account/{{this._id}}/destroy" class="btn btn-link">Xóa</a>
+              </td>
+          </tr>
+          {{/each}}
+      </tbody>
+  </table>
+</form>
